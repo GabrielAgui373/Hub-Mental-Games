@@ -1,0 +1,21 @@
+<div class="dropdown-wrapper">
+  @if(label()) {
+  <span class="dropdown-label">{{ label() }}</span>
+  }
+
+  <div class="dropdown-container">
+    <span class="dropdown-placeholder">{{ placeholder() }}</span>
+  </div>
+
+  <div class="dropdown-panel-list">
+    @for(option of options(); track $index) {
+    <span
+      class="dropdown-option"
+      [class.is-selected]="selectedOption() === option"
+      >{{ option.label }}</span
+    >
+    } @empty {
+        <span>{{emptyOptionsText()}}</span>
+    }
+  </div>
+</div>
