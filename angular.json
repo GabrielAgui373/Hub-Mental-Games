@@ -101,6 +101,7 @@
           "options": {
             "configDir": ".storybook",
             "browserTarget": "hub-mental-games:build",
+            "styles": ["src/styles.scss"],
             "compodoc": false,
             "port": 6006
           }
@@ -109,6 +110,7 @@
           "builder": "@storybook/angular:build-storybook",
           "options": {
             "configDir": ".storybook",
+            "styles": ["src/styles.scss"],
             "browserTarget": "hub-mental-games:build",
             "compodoc": false,
             "outputDir": "storybook-static"
