@@ -3,11 +3,11 @@
   <span class="dropdown-label">{{ label() }}</span>
   }
 
-  <div class="dropdown-container" (click)="isPanelListVisible()">
+  <div class="dropdown-container" (click)="toggleDropdownOpen()">
     <span class="dropdown-placeholder">{{ placeholder() }}</span>
     <svg
       class="dropdown-arrow"
-      
+      [class.is-open]="isOpen()"
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
@@ -23,8 +23,8 @@
     </svg>
   </div>
 
-  @if(isPanelListVisible()) {
-    <div class="dropdown-panel-list">
+  @if(isOpen()) {
+    <div class="dropdown-panel-list" animate.enter="is-open">
     @for(option of options(); track $index) {
     <span
       class="dropdown-option"

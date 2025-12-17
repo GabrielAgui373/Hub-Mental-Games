@@ -14,15 +14,15 @@ export interface DropdownOption<T> {
 export class DropdownComponent<T> {
   label = input('')
   options = input<DropdownOption<T>[]>([]);
-  placeholder = input('');
+  placeholder = input('Selecione um item');
   emptyOptionsText = input("Nenhum item carregado");
 
-  isPanelListVisible = signal(false);
+  isOpen = signal(false);
   selectedOption = signal<DropdownOption<T> | null>(null);
 
 
-  togglePanelListVisibility() {
-    this.isPanelListVisible.update(value => !value);
-    console.log(this.isPanelListVisible())
+  toggleDropdownOpen() {
+    this.isOpen.update(value => !value);
+    console.log(this.isOpen())
   }
 }

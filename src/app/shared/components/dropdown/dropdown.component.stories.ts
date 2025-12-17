@@ -12,6 +12,7 @@ type Story = StoryObj<DropdownComponent<any>>;
 export const Default: Story = {
   args: {
     label: 'Intervalo',
+    placeholder: 'Selecione o intervalo',
     options: [
       { label: '1 segundo', value: 1000 },
       { label: '2 segundos', value: 2000 },
