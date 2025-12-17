@@ -3,11 +3,28 @@
   <span class="dropdown-label">{{ label() }}</span>
   }
 
-  <div class="dropdown-container">
+  <div class="dropdown-container" (click)="isPanelListVisible()">
     <span class="dropdown-placeholder">{{ placeholder() }}</span>
+    <svg
+      class="dropdown-arrow"
+      
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="dropdown-arrow"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
   </div>
 
-  <div class="dropdown-panel-list">
+  @if(isPanelListVisible()) {
+    <div class="dropdown-panel-list">
     @for(option of options(); track $index) {
     <span
       class="dropdown-option"
@@ -15,7 +32,8 @@
       >{{ option.label }}</span
     >
     } @empty {
-        <span>{{emptyOptionsText()}}</span>
+    <span>{{ emptyOptionsText() }}</span>
     }
   </div>
+  }
 </div>

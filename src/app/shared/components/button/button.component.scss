@@ -27,6 +27,7 @@
 
   &:disabled {
     filter: grayscale(1);
+    cursor: not-allowed;
     border: 2.5px solid rgba($color: #000000, $alpha: 0.2);
       box-shadow: none;
   }
@@ -36,7 +37,7 @@
   }
 
   &--outline {
-    background-color: white;
+    background-color: transparent
   }
 
   &--sm {

@@ -1,0 +1,55 @@
+$game-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+.dropdown-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  .dropdown-label {
+    font-family: "Roboto";
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .dropdown-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    border: 2.5px solid black;
+    padding: 0.6rem 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 black;
+
+    .dropdown-placeholder {
+      font-weight: 600;
+    }
+
+    .dropdown-arrow {
+      font-weight: 600;
+    }
+  }
+
+  .dropdown-panel-list {
+    display: flex;
+    flex-direction: column;
+    border: 2.5px solid black;
+    border-radius: 0.5rem;
+    gap: 2px;
+
+    .dropdown-option {
+        background-color: transparent;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 0.5rem;
+        width: 100%;
+        transition: .2s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(black, 0.1);
+        }
+    }
+  }
+}
