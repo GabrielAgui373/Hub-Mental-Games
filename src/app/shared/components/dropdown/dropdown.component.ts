@@ -25,4 +25,9 @@ export class DropdownComponent<T> {
     this.isOpen.update(value => !value);
     console.log(this.isOpen())
   }
+
+  selectOption(option: DropdownOption<T>) {
+    this.selectedOption.set(option);
+    this.isOpen.set(false);
+  }
 }

@@ -15,6 +15,7 @@ $game-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
   .dropdown-container {
     display: flex;
     justify-content: space-between;
+    transition: all 0.3s $game-bounce;
     background-color: transparent;
     border: 2.5px solid black;
     padding: 0.6rem 0.8rem;
@@ -35,6 +36,16 @@ $game-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
         transform: rotate(180deg);
       }
     }
+
+    &:hover {
+      box-shadow: 1px 1px 0 black;
+      transform: translate(1px, 1px);
+    }
+
+    &:active{
+       box-shadow: none;
+      transform: translate(2px, 2px);
+    }
   }
 
   .dropdown-panel-list {
@@ -42,30 +53,42 @@ $game-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
     flex-direction: column;
     border: 2.5px solid black;
     transform-origin: top;
-    transform: scaleY(0);
-    opacity: 0;
     border-radius: 0.5rem;
     gap: 2px;
-    transition: transform 0.4s $game-bounce opacity 0.3s ease;
-    
 
     &.is-open {
-      transform:scaleY(1);
-      opacity: 1;
+      animation: bounce-in 0.4s $game-bounce;
+    }
+
+    &.is-close {
+      opacity: 0;
+      transform: scaleY(0);
+      transition: opacity 0.3s ease, transform 0.4s $game-bounce;
     }
 
     .dropdown-option {
-        background-color: transparent;
-        font-size: 1.1rem;
-        font-weight: 600;
-        padding: 0.5rem 0.6rem;
-        width: 100%;
-        transition: .2s;
-        cursor: pointer;
+      background-color: transparent;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 0.5rem 0.6rem;
+      width: 100%;
+      transition: 0.2s;
+      cursor: pointer;
 
-        &:hover {
-            background-color: rgba(black, 0.1);
-        }
+      &:hover {
+        background-color: rgba(black, 0.1);
+      }
+    }
+  }
+
+  @keyframes bounce-in {
+    from {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }

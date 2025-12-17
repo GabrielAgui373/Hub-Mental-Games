@@ -4,7 +4,12 @@
   }
 
   <div class="dropdown-container" (click)="toggleDropdownOpen()">
-    <span class="dropdown-placeholder">{{ placeholder() }}</span>
+    @if(!selectedOption()) {
+      <span class="dropdown-placeholder">{{ placeholder() }}</span>
+    } @else {
+      <span class="dropdown-placeholder">{{ selectedOption()?.label }}</span>
+    }
+    
     <svg
       class="dropdown-arrow"
       [class.is-open]="isOpen()"
@@ -24,10 +29,11 @@
   </div>
 
   @if(isOpen()) {
-    <div class="dropdown-panel-list" animate.enter="is-open">
+    <div class="dropdown-panel-list" animate.enter="is-open" animate.leave="is-close">
     @for(option of options(); track $index) {
     <span
       class="dropdown-option"
+      (click)="selectOption(option)"
       [class.is-selected]="selectedOption() === option"
       >{{ option.label }}</span
     >

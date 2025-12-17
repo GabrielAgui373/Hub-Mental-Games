@@ -1,3 +1,4 @@
+$game-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 
 .button {
   border: none;
@@ -13,7 +14,7 @@
   line-height: 1;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: .2s;
+  transition: all .3s $game-bounce;
 
   &:hover:not(:disabled) {
     transform: translate(1px, 1px);
