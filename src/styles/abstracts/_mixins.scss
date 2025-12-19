@@ -1,0 +1,37 @@
+@use 'themes';
+@use 'sass:map';
+
+@mixin neo-box {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-default);
+  background-color: transparent;
+  transition: all var(--transition-fast);
+
+  &:hover:not(:disabled) {
+    transform: translate(1px, 1px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translate(var(--shadow-offset-x), var(--shadow-offset-y));
+    box-shadow: none; 
+  }
+}
+
+@mixin generate-themes {    
+  :root {
+    $default: map.get(themes.$themes, 'hub');
+    @each $key, $value in $default {
+      --theme-#{$key}: #{$value};
+    }
+  }
+
+  @each $theme-name, $theme-map in themes.$themes {
+    [data-theme="#{$theme-name}"] {
+      @each $key, $value in $theme-map {
+        --theme-#{$key}: #{$value};
+      }
+    }
+  }
+}

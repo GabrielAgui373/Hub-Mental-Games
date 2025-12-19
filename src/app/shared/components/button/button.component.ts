@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { booleanAttribute, Component, computed, input } from '@angular/core';
 
 export type ButtonVariant = 'primary' | 'outline'
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -13,7 +13,7 @@ export class ButtonComponent {
   text = input.required();
   variant = input<ButtonVariant>('primary')
   size = input<ButtonSize>('md');
-  disabled = input<boolean>(false);
+  disabled = input(false, { transform: booleanAttribute });
 
   buttonClasses = computed(() => (
     {

@@ -1,46 +1,30 @@
-$game-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+@use '../../../../styles/abstracts/mixins' as m;
 
 .button {
-  border: none;
-  background-color: transparent;
+  @include m.neo-box;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Roboto';
-  border-radius: 0.5rem;
-  border: 2.5px solid black;
-  box-shadow: 3px 3px 0 black;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.5px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all .3s $game-bounce;
 
-  &:hover:not(:disabled) {
-    transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0 black;
-  }
-
-  &:active:not(:disabled) {
-    transform: translate(2px, 2px);
-    box-shadow: none
-  }
-
-  &:disabled {
-    filter: grayscale(1);
-    cursor: not-allowed;
-    border: 2.5px solid rgba($color: #000000, $alpha: 0.2);
-      box-shadow: none;
-  }
-  
   &--primary {
-    background-color: #f7a278;
+    background-color: var(--theme-primary);
+    color: var(--color-text);
   }
 
   &--outline {
-    background-color: transparent
+    background-color: transparent;
   }
 
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(1);
+  }
+  
   &--sm {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;

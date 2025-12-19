@@ -1,0 +1,26 @@
+//CSS Variables que os componentes usarão
+@use 'variables' as *;
+@use 'sass:map';
+
+:root {
+  --color-text: #000000;
+  --color-border: #000000;
+  --color-shadow: #000000;
+
+  // Layout Tokens
+  --border-width: 2.5px;
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  
+  // Shadows
+  --shadow-offset-x: 3px;
+  --shadow-offset-y: 3px;
+  --shadow-default: var(--shadow-offset-x) var(--shadow-offset-y) 0 var(--color-border);
+  --shadow-hover: 1px 1px 0 var(--color-border);
+  
+  // Animations
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --transition-fast: 0.2s var(--ease-bounce);
+  --transition-medium: 0.4s var(--ease-bounce);
+}

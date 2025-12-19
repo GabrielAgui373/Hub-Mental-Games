@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { booleanAttribute, Component, input, signal } from '@angular/core';
 
 export interface DropdownOption<T> {
   label: string,
@@ -16,6 +16,7 @@ export class DropdownComponent<T> {
   options = input<DropdownOption<T>[]>([]);
   placeholder = input('Selecione um item');
   emptyOptionsText = input("Nenhum item carregado");
+  disabled = input(false, { transform: booleanAttribute });
 
   isOpen = signal(false);
   selectedOption = signal<DropdownOption<T> | null>(null);
@@ -29,5 +30,11 @@ export class DropdownComponent<T> {
   selectOption(option: DropdownOption<T>) {
     this.selectedOption.set(option);
     this.isOpen.set(false);
+  }
+
+  onBlur() {
+    setTimeout(() => {
+      this.isOpen.set(false);
+    }, 150);
   }
 }
