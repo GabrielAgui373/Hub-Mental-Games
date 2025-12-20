@@ -1,0 +1,47 @@
+@use './abstracts/variables';
+@use './abstracts/themes';
+@use './abstracts/tokens';
+@use './abstracts/mixins';
+
+// 2. Geração dos Temas
+// Executa o mixin que cria as variáveis de cor (--theme-primary, etc.)
+// tanto para o :root (padrão) quanto para os atributos [data-theme]
+@include mixins.generate-themes;
+ 
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: local("Roboto"),
+    url("../assets/fonts/Roboto/Roboto-VariableFont_wdth\,wght.ttf") format("truetype-variations");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+  src: local("Roboto Italic"),
+    url("../assets/fonts/Roboto/Roboto-Italic-VariableFont_wdth\,wght.ttf") format("truetype-variations");
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--theme-bg);
+  transition: background-color 0.4s ease-in-out, 
+              color 0.4s ease-in-out;
+  min-height: 100vh;
+}

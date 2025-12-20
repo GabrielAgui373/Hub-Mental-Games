@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use 'variables' as v;
+
+// 1. Defina seus tokens base (o que muda entre os temas)
+$themes: (
+  'hub': (
+    'primary': #6c5ce7,    
+    'surface': #ffffff,
+    'text': #2d3436,
+    'bg': #dfe6e9
+  ),
+  'number-sum': (
+    'primary': map.get(v.$coral, 500),
+    'surface': #fff5f5,
+    'text': map.get(v.$black-alpha, 100),
+    'bg': map.get(v.$coral, 10)
+  )
+);

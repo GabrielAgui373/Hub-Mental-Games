@@ -1,0 +1,45 @@
+<div class="dropdown-wrapper" tabindex="0" (blur)="onBlur()">
+  @if(label()) {
+  <span class="dropdown-label">{{ label() }}</span>
+  }
+
+  <div class="dropdown-container" (click)="toggleDropdownOpen()">
+    @if(!selectedOption()) {
+      <span class="dropdown-placeholder">{{ placeholder() }}</span>
+    } @else {
+      <span class="dropdown-placeholder">{{ selectedOption()?.label }}</span>
+    }
+    
+    <svg
+      class="dropdown-arrow"
+      [class.is-open]="isOpen()"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="dropdown-arrow"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+
+  @if(isOpen()) {
+    <div class="dropdown-panel-list" animate.enter="is-open" animate.leave="is-close">
+    @for(option of options(); track $index) {
+    <span
+      class="dropdown-option"
+      (click)="selectOption(option)"
+      [class.is-selected]="selectedOption() === option"
+      >{{ option.label }}</span
+    >
+    } @empty {
+    <span>{{ emptyOptionsText() }}</span>
+    }
+  </div>
+  }
+</div>
