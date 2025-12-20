@@ -37,6 +37,15 @@ export const Large: Story = {
   },
 };
 
+export const FullWidth: Story = {
+  args: {
+    text: 'Start',
+    fullWidth: true,  
+  }
+}
+
+
+
 export const Disabled: Story = {
   args: {
     text: 'Start',
