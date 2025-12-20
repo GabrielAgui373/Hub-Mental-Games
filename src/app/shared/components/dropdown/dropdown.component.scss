@@ -1,11 +1,13 @@
-@use '../../../../styles/abstracts/variables' as v; // Necessário para o z-index
+@use "../../../../styles/abstracts/variables" as v;
 
 .dropdown-wrapper {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  position: relative; // Necessário para o painel ficar ancorado aqui
+  position: relative;
   gap: 0.5rem;
-  outline: none; // Remove a borda azul padrão ao focar
+  width: 100%;
+  max-width: 100%;
+  outline: none;
 
   .dropdown-label {
     font-family: inherit;
@@ -17,21 +19,25 @@
   .dropdown-container {
     display: flex;
     justify-content: space-between;
-    align-items: center; // Centraliza seta e texto verticalmente
-    
-    // Variáveis novas aplicadas na sua lógica antiga
+    align-items: center;
+
     transition: all 0.3s var(--ease-bounce);
-    background-color: var(--color-surface); 
+    background-color: var(--color-surface);
     border: var(--border-width) solid var(--color-border);
     padding: 0.6rem 0.8rem;
     border-radius: var(--border-radius-md);
     cursor: pointer;
     box-shadow: var(--shadow-default);
-    min-width: 200px; // Garante um tamanho mínimo visual
 
     .dropdown-placeholder {
       font-weight: 600;
       color: var(--color-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+      text-align: left;
+      margin-right: 0.5rem;
     }
 
     .dropdown-arrow {
@@ -39,13 +45,13 @@
       margin-left: 0.5rem;
       color: var(--color-text);
       transition: transform 0.4s var(--ease-bounce);
+      flex-shrink: 0;
 
       &.is-open {
         transform: rotate(180deg);
       }
     }
 
-    // Mantendo seu efeito tátil original
     &:hover {
       box-shadow: var(--shadow-hover);
       transform: translate(1px, 1px);
@@ -60,20 +66,19 @@
   .dropdown-panel-list {
     display: flex;
     flex-direction: column;
-    
-    // Configuração para flutuar sobre o conteúdo (Upgrade necessário)
+
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     margin-top: 0.5rem;
-    z-index: map-get(v.$z-layers, 'dropdown'); // Usa o mapa do variables
-    
+    z-index: map-get(v.$z-layers, "dropdown");
+
     background-color: var(--color-surface);
     border: var(--border-width) solid var(--color-border);
     transform-origin: top;
     border-radius: var(--border-radius-md);
-    overflow: hidden; // Para o hover não vazar as bordas arredondadas
+    overflow: hidden;
 
     &.is-open {
       animation: bounce-in 0.4s var(--ease-bounce);
@@ -86,24 +91,27 @@
     }
 
     .dropdown-option {
-      background-color: transparent;
+      background-color: white;
       font-size: 1rem;
       font-weight: 600;
       padding: 0.8rem 0.8rem;
       width: 100%;
-      transition: 0.2s;
+      transition: 0.1s;
       cursor: pointer;
       color: var(--color-text);
 
       &:hover {
-        // Usa a cor primária do tema atual (ex: roxo no Hub, vermelho no Soma)
-        background-color: var(--theme-primary); 
-        color: var(--theme-surface); // Texto inverte a cor para leitura
+        background-color: var(--theme-primary);
+        color: var(--theme-surface);
       }
-      
-      // Pequeno divisor entre itens (Opcional, mas ajuda na leitura)
+
       &:not(:last-child) {
-        border-bottom: 1px solid rgba(0,0,0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      &.is-selected {
+        background-color: var(--theme-primary);
+        color: var(--theme-surface);
       }
     }
   }
