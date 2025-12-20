@@ -18,6 +18,10 @@
     background-color: transparent;
   }
 
+  &.full-width-host {
+    display: block;
+    width: 100%;
+  }
 
   &:disabled {
     opacity: 0.6;
