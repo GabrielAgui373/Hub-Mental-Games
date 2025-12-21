@@ -17,7 +17,6 @@ const meta: Meta<DropdownComponent<any>> = {
 export default meta;
 type Story = StoryObj<DropdownComponent<any>>;
 
-// --- Dados Mockados ---
 const opcoesPeriodo = [
   { label: 'Manhã', value: 'morning' },
   { label: 'Tarde', value: 'afternoon' },
@@ -35,14 +34,13 @@ const opcoesStatus = [
   { label: 'Inativo', value: false },
 ];
 
-// --- Story com FormGroup ---
 export const FormGroupIntegration: Story = {
   render: (args) => {
-    // Criação do FormGroup com 3 controles
+   
     const form = new FormGroup({
-      periodo: new FormControl(null, Validators.required), // Validação Required
-      categoria: new FormControl('dev'), // Valor inicial
-      status: new FormControl({ value: true, disabled: true }) // Inicialmente desabilitado
+      periodo: new FormControl(null, Validators.required), 
+      categoria: new FormControl('dev'), 
+      status: new FormControl({ value: true, disabled: true }) 
     });
 
     return {
@@ -51,17 +49,17 @@ export const FormGroupIntegration: Story = {
         opcoesPeriodo,
         opcoesCategoria,
         opcoesStatus,
-        // Função para alternar o estado de desabilitado do campo 'status'
+
         toggleStatusDisabled: () => {
           const control = form.get('status');
           control?.enabled ? control.disable() : control?.enable();
         },
-        // Função de submit simulada
+
         submitForm: () => {
           if (form.valid) {
             alert(JSON.stringify(form.value, null, 2));
           } else {
-            form.markAllAsTouched(); // Marca campos para mostrar erros (se houver estilização para erro)
+            form.markAllAsTouched(); 
             alert('Formulário inválido! Verifique os campos.');
           }
         },

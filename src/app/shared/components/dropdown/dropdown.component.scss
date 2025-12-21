@@ -1,4 +1,5 @@
 @use "../../../../styles/abstracts/variables" as v;
+@use '../../../../styles/abstracts/mixins' as m;
 
 .dropdown-wrapper {
   display: flex;
@@ -9,6 +10,14 @@
   max-width: 100%;
   outline: none;
 
+  &.is-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(1);
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+
   .dropdown-label {
     font-family: inherit;
     font-weight: 600;
@@ -17,17 +26,13 @@
   }
 
   .dropdown-container {
+    @include m.neo-box;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    transition: all 0.3s var(--ease-bounce);
-    background-color: var(--color-surface);
-    border: var(--border-width) solid var(--color-border);
     padding: 0.6rem 0.8rem;
-    border-radius: var(--border-radius-md);
     cursor: pointer;
-    box-shadow: var(--shadow-default);
 
     .dropdown-placeholder {
       font-weight: 600;
@@ -66,19 +71,24 @@
   .dropdown-panel-list {
     display: flex;
     flex-direction: column;
-
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     margin-top: 0.5rem;
     z-index: map-get(v.$z-layers, "dropdown");
-
-    background-color: var(--color-surface);
+    background-color: white;
     border: var(--border-width) solid var(--color-border);
     transform-origin: top;
     border-radius: var(--border-radius-md);
     overflow: hidden;
+
+    .empty-dropdown-list {
+      padding: 0.8rem;
+      font-weight: 700;
+    }
 
     &.is-open {
       animation: bounce-in 0.4s var(--ease-bounce);
@@ -91,7 +101,6 @@
     }
 
     .dropdown-option {
-      background-color: white;
       font-size: 1rem;
       font-weight: 600;
       padding: 0.8rem 0.8rem;
@@ -100,11 +109,12 @@
       cursor: pointer;
       color: var(--color-text);
 
-      &:hover {
+      &:hover, 
+      &.is-highlighted { 
         background-color: var(--theme-primary);
         color: var(--theme-surface);
       }
-
+      
       &:not(:last-child) {
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       }

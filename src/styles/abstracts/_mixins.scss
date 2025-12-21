@@ -8,12 +8,12 @@
   background-color: transparent;
   transition: all var(--transition-fast);
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled):not(.is-disabled) {
     transform: translate(1px, 1px);
     box-shadow: var(--shadow-hover);
   }
   
-  &:active:not(:disabled) {
+  &:active:not(:disabled):not(.is-disabled) {
     transform: translate(var(--shadow-offset-x), var(--shadow-offset-y));
     box-shadow: none; 
   }
