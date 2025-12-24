@@ -13,9 +13,11 @@
   &.is-disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    filter: grayscale(1);
-    transform: translate(2px, 2px);
     box-shadow: none;
+
+    *{
+      cursor: not-allowed;
+    }
   }
 
   .dropdown-label {
@@ -23,6 +25,10 @@
     font-weight: 600;
     line-height: 1;
     color: var(--color-text);
+
+    &.is-disabled {
+        opacity: 0.8;
+    }
   }
 
   .dropdown-container {
@@ -31,8 +37,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--theme-surface);
     padding: 0.6rem 0.8rem;
     cursor: pointer;
+
+    &.is-disabled {
+      pointer-events: none; 
+      box-shadow: none; 
+      transform: translate(2px, 2px) !important;
+    }
+
 
     .dropdown-placeholder {
       font-weight: 600;

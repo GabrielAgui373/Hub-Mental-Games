@@ -3,7 +3,7 @@
   <span class="dropdown-label">{{ label() }}</span>
   }
 
-  <div class="dropdown-container" (click)="toggleDropdownOpen()">
+  <div class="dropdown-container" (click)="toggleDropdownOpen()" [class.is-disabled]="isDisabled()">
     @if(!selectedOption()) {
       <span class="dropdown-placeholder">{{ placeholder() }}</span>
     } @else {
