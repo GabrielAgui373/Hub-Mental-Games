@@ -1,9 +1,9 @@
-<div class="dropdown-wrapper" tabindex="0" (blur)="onBlur()">
+<div class="dropdown-wrapper" tabindex="0" (keydown)="onKeyDown($event)" (blur)="onBlur()" [class.is-disabled]="isDisabled()">
   @if(label()) {
   <span class="dropdown-label">{{ label() }}</span>
   }
 
-  <div class="dropdown-container" (click)="toggleDropdownOpen()">
+  <div class="dropdown-container" (click)="toggleDropdownOpen()" [class.is-disabled]="isDisabled()">
     @if(!selectedOption()) {
       <span class="dropdown-placeholder">{{ placeholder() }}</span>
     } @else {
@@ -29,16 +29,18 @@
   </div>
 
   @if(isOpen()) {
-    <div class="dropdown-panel-list" animate.enter="is-open" animate.leave="is-close">
+    <div class="dropdown-panel-list" #listContainer animate.enter="is-open" animate.leave="is-close">
     @for(option of options(); track $index) {
     <span
       class="dropdown-option"
+      [id]="'dropdown-option-' + $index"
       (click)="selectOption(option)"
       [class.is-selected]="selectedOption() === option"
+      [class.is-highlighted]="highlightedIndex() === $index"
       >{{ option.label }}</span
     >
     } @empty {
-    <span>{{ emptyOptionsText() }}</span>
+    <span class="empty-dropdown-list">{{ emptyOptionsText() }}</span>
     }
   </div>
   }
