@@ -6,7 +6,7 @@ $themes: (
   'hub': (
     'primary': #6c5ce7,    
     'surface': #ffffff,
-    'text': #2d3436,
+    'text': map.get(v.$black-alpha, 100),
     'bg': #dfe6e9
   ),
   'number-sum': (

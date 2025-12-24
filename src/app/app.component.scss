@@ -1,0 +1,24 @@
+.container {
+  font-family: sans-serif;
+  background-color: var(--theme-bg);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+
+.button {
+  appearance: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  background-color: var(--theme-primary);
+  color: white;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.button:hover {
+  filter: brightness(0.8);
+}
