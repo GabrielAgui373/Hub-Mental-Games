@@ -3,7 +3,7 @@
 @use './abstracts/tokens';
 @use './abstracts/mixins';
 
-// 2. Geração dos Temas
+// Geração dos Temas
 // Executa o mixin que cria as variáveis de cor (--theme-primary, etc.)
 // tanto para o :root (padrão) quanto para os atributos [data-theme]
 @include mixins.generate-themes;
