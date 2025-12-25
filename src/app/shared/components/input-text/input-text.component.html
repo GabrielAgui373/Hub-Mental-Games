@@ -1,1 +1,7 @@
-<p>input-text works!</p>
+@if(label()) {
+<span class="input-text-label">{{ label() }}</span>
+}
+
+<div class="input-text-container" [class]="'size-' + size()" >
+  <input [type]="type()" class="input-text" [placeholder]="placeholder()" />
+</div>

@@ -40,8 +40,6 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--theme-bg);
   transition: background-color 0.4s ease-in-out, 
               color 0.4s ease-in-out;
-  min-height: 100vh;
 }

@@ -1,0 +1,28 @@
+.layout-container {
+  background-color: var(--theme-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.config-container {
+  max-width: 85%;
+  width: 400px;
+ 
+}
+
+.form-config {
+  padding: 1rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1rem;
+  flex-direction: column;
+
+  & > :last-child {
+    margin-top: 1rem;
+  }
+}
