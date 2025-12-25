@@ -2,7 +2,7 @@
 <span class="input-text-label">{{ label() }}</span>
 }
 
-<div class="input-text-container" [class]="'size-' + size()">
+<div class="input-text-container" [class]="'size-' + size()" [class.disabled]="isDisabled()">
   <input
     type="text"
     class="input-text"

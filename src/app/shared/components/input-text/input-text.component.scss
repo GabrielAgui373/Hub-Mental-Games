@@ -23,9 +23,21 @@
   padding: 0;
   overflow: hidden;
 
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: translate(2px, 2px) !important;
+    box-shadow: none;
+
+    
+  }
+
   &:focus-within {
     box-shadow: none !important;
-    transform: translate(var(--shadow-offset-x), var(--shadow-offset-y)) !important;
+    transform: translate(
+      var(--shadow-offset-x),
+      var(--shadow-offset-y)
+    ) !important;
   }
 
   &:hover:not(:focus-within) {
@@ -43,8 +55,8 @@
     font-weight: 600;
 
     &::placeholder {
-        color: rgb(52, 52, 52);
-        font-weight: 500;
+      color: rgb(52, 52, 52);
+      font-weight: 500;
     }
   }
 
@@ -69,7 +81,7 @@
     }
   }
 
-  &.size-xl  {
+  &.size-xl {
     .input-text {
       padding: 0.9rem 1.1rem;
       font-size: 1.4rem;
