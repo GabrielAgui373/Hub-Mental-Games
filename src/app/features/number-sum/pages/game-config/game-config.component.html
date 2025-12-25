@@ -1,0 +1,20 @@
+<div class="layout-container">
+  <div class="config-container">
+    <form [formGroup]="formConfig" class="form-config">
+      <app-dropdown
+        label="Intervals"
+        [options]="intervals"
+        placeholder="Select step size"
+        formControlName="interval"
+      />
+      <app-dropdown
+        label="Amount"
+        [options]="numberOptions"
+        placeholder="Enter amount of numbers"
+        formControlName="amount"
+      />
+
+      <app-button text="Start Game!" fullWidth [disabled]="!formConfig.valid" />
+    </form>
+  </div>
+</div>

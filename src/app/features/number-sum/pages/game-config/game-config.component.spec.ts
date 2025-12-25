@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NumberSumComponent } from './number-sum.component';
+import { GameConfigComponent } from './game-config.component';
 
-describe('NumberSumComponent', () => {
-  let component: NumberSumComponent;
-  let fixture: ComponentFixture<NumberSumComponent>;
+describe('GameConfigComponent', () => {
+  let component: GameConfigComponent;
+  let fixture: ComponentFixture<GameConfigComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NumberSumComponent]
+      imports: [GameConfigComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NumberSumComponent);
+    fixture = TestBed.createComponent(GameConfigComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,9 +10,9 @@ $themes: (
     'bg': #dfe6e9
   ),
   'number-sum': (
-    'primary': map.get(v.$coral, 500),
+    'primary': map.get(v.$yellow, 50),
     'surface': #ffffff,
     'text': map.get(v.$black-alpha, 100),
-    'bg': map.get(v.$coral, 10)
+    'bg': map.get(v.$yellow, 10)
   )
 );

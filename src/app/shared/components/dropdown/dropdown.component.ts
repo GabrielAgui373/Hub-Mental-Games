@@ -30,8 +30,8 @@ export interface DropdownOption<T> {
 export class DropdownComponent<T> implements ControlValueAccessor {
   label = input('');
   options = input<DropdownOption<T>[]>([]);
-  placeholder = input('Selecione um item');
-  emptyOptionsText = input('Nenhum item carregado');
+  placeholder = input('Select a item');
+  emptyOptionsText = input('No item found');
   dataKey = input<string>();
 
   isOpen = signal(false);
