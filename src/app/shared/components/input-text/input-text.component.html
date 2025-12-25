@@ -2,6 +2,13 @@
 <span class="input-text-label">{{ label() }}</span>
 }
 
-<div class="input-text-container" [class]="'size-' + size()" >
-  <input [type]="type()" class="input-text" [placeholder]="placeholder()" />
+<div class="input-text-container" [class]="'size-' + size()">
+  <input
+    type="text"
+    class="input-text"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    [disabled]="isDisabled()"
+    (input)="onInput($event)"
+  />
 </div>
