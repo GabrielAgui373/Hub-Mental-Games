@@ -40,6 +40,7 @@
     background-color: transparent;
     color: var(--color-text);
     font-family: inherit;
+    font-weight: 600;
 
     &::placeholder {
         color: rgb(52, 52, 52);
@@ -65,6 +66,14 @@
     .input-text {
       padding: 0.8rem 1rem;
       font-size: 1.1rem;
+    }
+  }
+
+  &.size-xl  {
+    .input-text {
+      padding: 0.9rem 1.1rem;
+      font-size: 1.4rem;
+      font-weight: 700;
     }
   }
 }

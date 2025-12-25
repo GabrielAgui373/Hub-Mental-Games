@@ -2,7 +2,7 @@ import { Component, forwardRef, input, signal } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type InputType = 'text' | 'number';
-export type InputSize = 'sm' | 'md' | 'lg';
+export type InputSize = 'sm' | 'md' | 'lg' | 'xl';
 
 @Component({
   selector: 'app-input-text',
@@ -17,7 +17,7 @@ export type InputSize = 'sm' | 'md' | 'lg';
     },
   ],
 })
-export class InputTextComponent {
+export class InputTextComponent { 
   label = input('');
   placeholder = input('');
   type = input<InputType>('text');
@@ -26,10 +26,10 @@ export class InputTextComponent {
   value = signal<string>('');
   isDisabled = signal<boolean>(false);
 
-  onChange: (value: any) => void = () => {};
+  onChange: (value: string) => void = () => {};
   onTouched: () => void = () => {};
 
-  private sanitizeValue(rawValue: any): string {
+  private sanitizeValue(rawValue: string): string {
     if (rawValue === null || rawValue === undefined) {
       return '';
     }
@@ -40,11 +40,10 @@ export class InputTextComponent {
       return valueStr;
     }
 
-    let cleanValue = valueStr.replace(/[^0-9-]/g, '');
+    const hasMinus = valueStr.includes('-');
 
+    let cleanValue = valueStr.replace(/[^0-9]/g, '');
 
-    const hasMinus = cleanValue.startsWith('-');
-    cleanValue = cleanValue.replace(/-/g, '');
     if (hasMinus) {
       cleanValue = '-' + cleanValue;
     }
@@ -66,8 +65,8 @@ export class InputTextComponent {
     this.onChange(newValue);
   }
 
-  writeValue(obj: any): void {
-    const sanitized = this.sanitizeValue(obj);
+  writeValue(value: string): void {
+    const sanitized = this.sanitizeValue(value);
     this.value.set(sanitized);
   }
 

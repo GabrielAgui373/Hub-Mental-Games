@@ -34,4 +34,20 @@ export const Large: Story = {
   },
 };
 
+export const ExtraLarge: Story = {
+  args: {
+    placeholder: 'Enter with number',
+    label: 'Label',
+    size: 'xl'  
+  },
+};
+
+
+export const Numeric: Story = {
+  args: {
+    placeholder: 'Enter with number',
+    label: 'Label',
+    type: 'number',
+  },
+};
 
