@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NumberSumComponent } from './number-sum.component';
+import { InputTextComponent } from './input-text.component';
 
-describe('NumberSumComponent', () => {
-  let component: NumberSumComponent;
-  let fixture: ComponentFixture<NumberSumComponent>;
+describe('InputTextComponent', () => {
+  let component: InputTextComponent;
+  let fixture: ComponentFixture<InputTextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NumberSumComponent]
+      imports: [InputTextComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NumberSumComponent);
+    fixture = TestBed.createComponent(InputTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
