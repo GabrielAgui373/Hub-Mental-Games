@@ -1,0 +1,36 @@
+<div class="card" [class.is-expanded]="expanded()">
+  <div class="card__header">
+    <div class="card__title-group">
+      <h3 class="card__title">{{ game().title }}</h3>
+    </div>
+
+    <button
+      class="card__toggle-btn"
+      (click)="toggleDetails()"
+      [attr.aria-label]="expanded() ? 'Collapse details' : 'Expand details'"
+    >
+      <span class="chevron">▼</span>
+    </button>
+  </div>
+
+  <p class="card__description">{{ game().description }}</p>
+
+  <div class="card__expand-wrapper">
+    <div class="card__expand-inner">
+      <div class="card__details-content">
+        <p><strong>Como funciona:</strong></p>
+        <p>{{ game().details }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card__actions">
+    <app-button
+      text="JOGAR AGORA"
+      variant="primary"
+      [fullWidth]="true"
+      (click)="navigateToGame()"
+    >
+    </app-button>
+  </div>
+</div>

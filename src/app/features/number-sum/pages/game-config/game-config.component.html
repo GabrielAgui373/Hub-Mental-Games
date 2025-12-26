@@ -1,16 +1,24 @@
 <div class="layout-container">
   <div class="config-container">
-    <form [formGroup]="formConfig" class="form-config">
+    <form [formGroup]="formConfig" class="form-config" (ngSubmit)="startGame()">
       <app-dropdown
-        label="Intervals"
+        label="Digits"
+        placeholder="Select number of digits"
+        formControlName="digits"
+        [options]="digitsOptions"
+      />
+      
+      <app-dropdown
+        label="Time Interval"
         [options]="intervals"
-        placeholder="Select step size"
+        placeholder="Select speed"
         formControlName="interval"
       />
+      
       <app-dropdown
-        label="Amount"
+        label="Quantity"
         [options]="numberOptions"
-        placeholder="Enter amount of numbers"
+        placeholder="Select quantity"
         formControlName="amount"
       />
 
