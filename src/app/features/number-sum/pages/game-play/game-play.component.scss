@@ -1,0 +1,40 @@
+:host {
+  background-color: var(--theme-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.number {
+  font-size: 4.5rem;
+  color: var(--theme-text);
+  font-weight: 700;
+}
+
+.answer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 200px;
+}
+
+.ready-text {
+  font-size: 1.5rem;
+  color: var(--theme-text);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}

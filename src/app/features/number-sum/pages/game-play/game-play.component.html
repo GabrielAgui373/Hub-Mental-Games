@@ -1,1 +1,22 @@
-<p>game-play works!</p>
+@if(!finish()) { @if (currentNumber() !== undefined) {
+<span class="number">{{ currentNumber() }}</span>
+} @else {
+<span class="ready-text">Preparar...</span>
+} } @else {
+<div class="answer-container">
+  <app-input-text
+    size="xl"
+    type="number"
+    [formControl]="answer"
+    placeholder="0"
+    (keydown.enter)="answer.valid && checkResult()"
+  />
+  <app-button
+    text="Check!"
+    fullWidth
+    size="lg"
+    (click)="checkResult()"
+    [disabled]="!answer.valid"
+  />
+</div>
+}

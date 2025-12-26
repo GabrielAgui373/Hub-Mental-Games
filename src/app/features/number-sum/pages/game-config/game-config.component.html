@@ -1,28 +1,26 @@
-<div class="layout-container">
-  <div class="config-container">
-    <form [formGroup]="formConfig" class="form-config" (ngSubmit)="startGame()">
-      <app-dropdown
-        label="Digits"
-        placeholder="Select number of digits"
-        formControlName="digits"
-        [options]="digitsOptions"
-      />
-      
-      <app-dropdown
-        label="Time Interval"
-        [options]="intervals"
-        placeholder="Select speed"
-        formControlName="interval"
-      />
-      
-      <app-dropdown
-        label="Quantity"
-        [options]="numberOptions"
-        placeholder="Select quantity"
-        formControlName="amount"
-      />
+<div class="config-container">
+  <form [formGroup]="formConfig" class="form-config" (ngSubmit)="startGame()">
+    <app-dropdown
+      label="Digits"
+      placeholder="Select number of digits"
+      formControlName="digits"
+      [options]="digitsOptions"
+    />
 
-      <app-button text="Start Game!" fullWidth [disabled]="!formConfig.valid" />
-    </form>
-  </div>
+    <app-dropdown
+      label="Time Interval"
+      [options]="intervals"
+      placeholder="Select speed"
+      formControlName="interval"
+    />
+
+    <app-dropdown
+      label="Quantity"
+      [options]="numberOptions"
+      placeholder="Select quantity"
+      formControlName="amount"
+    />
+
+    <app-button text="Start Game!" fullWidth [disabled]="!formConfig.valid" />
+  </form>
 </div>

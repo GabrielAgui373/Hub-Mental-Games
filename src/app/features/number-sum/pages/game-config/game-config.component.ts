@@ -21,7 +21,6 @@ interface GameConfigForm {
   styleUrl: './game-config.component.scss',
 })
 export class GameConfigComponent {
-  private themeService = inject(ThemeService);
   private fb = inject(FormBuilder);
   private store = inject(NumberSumStore);
   private router = inject(Router);
@@ -32,10 +31,6 @@ export class GameConfigComponent {
     amount: this.fb.control(null, Validators.required),
     digits: this.fb.control(null, Validators.required),
   });
-
-  ngOnInit() {
-    this.themeService.changeTheme(THEMES.NUMBER_SUM);
-  }
 
   startGame() {
     if(this.formConfig.valid) {
@@ -52,7 +47,6 @@ export class GameConfigComponent {
   }
 
   readonly intervals: DropdownOption<number>[] = [
-    { label: '0.1 second', value: 100 }, 
     { label: '0.3 seconds', value: 300 },
     { label: '0.5 seconds', value: 500 },
     { label: '0.8 seconds', value: 800 },
