@@ -9,5 +9,5 @@ import { ThemeService } from './core/services/theme.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private themeService = inject(ThemeService);
+  // private themeService = inject(ThemeService);
 }
