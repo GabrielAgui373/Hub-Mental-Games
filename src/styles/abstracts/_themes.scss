@@ -1,7 +1,6 @@
 @use 'sass:map';
 @use 'variables' as v;
 
-// 1. Defina seus tokens base (o que muda entre os temas)
 $themes: (
   'hub': (
     'primary': #6c5ce7,    

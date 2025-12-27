@@ -1,10 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { NumberSumStore } from '../../store/number-sum.store';
-import { finalize, interval, map, take, tap } from 'rxjs';
+import { concat, finalize, interval, map, take, tap, timer } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextComponent } from '../../../../shared/components/input-text/input-text.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { NumberSumResult } from '../../store/number-sum.types';
+import { ActivatedRoute, Router } from '@angular/router';
+
+interface GameDisplayStep {
+  value: string | number;
+  isPrep: boolean;
+}
 
 @Component({
   selector: 'app-game-play',
@@ -14,6 +21,8 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 })
 export class GamePlayComponent {
   private store = inject(NumberSumStore);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   answer = new FormControl<number | null>(null, Validators.required);
   finish = signal(false);
@@ -27,25 +36,47 @@ export class GamePlayComponent {
   gameSequence = this.getNumbers(this.config.amount, this.config.digits);
   private result = this.gameSequence.reduce((prev, curr) => prev + curr, 0);
 
-  numbers$ = interval(this.config.interval).pipe(
+  private countdown$ = timer(500, 1000).pipe(
+    take(3),
+    map((i) => ({ 
+      value: (3 - i).toString(), 
+      isPrep: true 
+    }))
+  );
+
+  private gamePlay$ = timer(1000, this.config.interval).pipe(
     take(this.config.amount),
-    map((index) => this.gameSequence[index]),
+    map((index) => ({ 
+      value: this.gameSequence[index], 
+      isPrep: false 
+    }))
+  );
+
+  displayStream$ = concat(this.countdown$, this.gamePlay$).pipe(
     finalize(() => {
       setTimeout(() => {
         this.finish.set(true);
-        this.answer
       }, this.config.interval);
     })
   );
 
-  currentNumber = toSignal(this.numbers$);
+  currentStep = toSignal<GameDisplayStep>(this.displayStream$);
 
   checkResult() {
-    if (Number(this.answer.value) === this.result) {
-      alert('Acertou! Soma: ' + this.result);
-    } else {
-      alert('Errou! A soma era: ' + this.result);
-    }
+   if (this.answer.invalid) return;
+
+    const userAnswer = Number(this.answer.value);
+    const isCorrect = userAnswer === this.result;
+
+    const resultData: NumberSumResult = {
+      correctSum: this.result,
+      userAnswer: userAnswer,
+      isCorrect: isCorrect,
+      numbersShown: this.gameSequence
+    };
+
+    this.store.setGameResult(resultData);
+    this.router.navigate(['../summary'], { relativeTo: this.route });
   }
 
   getNumbers(amount: number, digits: number): number[] {

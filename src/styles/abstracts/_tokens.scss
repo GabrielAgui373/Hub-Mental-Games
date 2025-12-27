@@ -1,4 +1,3 @@
-//CSS Variables que os componentes usarão
 @use 'variables' as *;
 @use 'sass:map';
 
@@ -14,10 +13,8 @@
   --border-radius-lg: 1rem;
   
   // Shadows
-  --shadow-offset-x: 3px;
-  --shadow-offset-y: 3px;
-  --shadow-default: var(--shadow-offset-x) var(--shadow-offset-y) 0 var(--color-border);
-  --shadow-hover: 1px 1px 0 var(--color-border);
+  --shadow-offset: 4px;
+  --shadow-default: var(--shadow-offset) var(--shadow-offset) 0 0 var(--color-border);
   
   // Animations
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
