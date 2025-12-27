@@ -1,0 +1,55 @@
+<div class="summary-container">
+  @if (result(); as gameResult) {
+  <div class="result-card" [class.is-correct]="gameResult.isCorrect">
+    
+    <header class="result-header">
+      @if (gameResult.isCorrect) {
+        <h1 class="title">Awesome!</h1>
+        <p class="subtitle">Your calculation is correct.</p>
+      } @else {
+        <h1 class="title">Oops!</h1>
+        <p class="subtitle">Not quite right this time.</p>
+      }
+    </header>
+
+    <div class="score-comparison">
+      <div class="score-box user-score">
+        <span class="label">Your Answer</span>
+        <span class="value">{{ gameResult.userAnswer }}</span>
+      </div>
+      
+      <div class="divider">vs</div>
+
+      <div class="score-box correct-score">
+        <span class="label">Correct Sum</span>
+        <span class="value">{{ gameResult.correctSum }}</span>
+      </div>
+    </div>
+
+    <div class="sequence-history">
+      <span class="history-label">Sequence:</span>
+      <p class="numbers-list">
+        {{ gameResult.numbersShown.join(' + ') }}
+      </p>
+    </div>
+
+    <div class="actions">
+      <app-button 
+        text="Play Again" 
+        fullWidth 
+        (click)="playAgain()"
+      />
+      
+      <app-button 
+        text="Setup" 
+        size="md" 
+        [variant]="'outline'"
+        fullWidth 
+        (click)="goToSetup()"
+      />
+
+      <span class="home-link" (click)="goToHome()">Home</span>
+    </div>
+  </div>
+  }
+</div>

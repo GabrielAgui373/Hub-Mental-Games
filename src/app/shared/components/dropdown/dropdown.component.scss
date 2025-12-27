@@ -1,5 +1,6 @@
 @use "../../../../styles/abstracts/variables" as v;
 @use '../../../../styles/abstracts/mixins' as m;
+@use "sass:map";
 
 .dropdown-wrapper {
   display: flex;
@@ -93,7 +94,7 @@
     left: 0;
     width: 100%;
     margin-top: 0.5rem;
-    z-index: map-get(v.$z-layers, "dropdown");
+    z-index: map.get(v.$z-layers, "dropdown");
     background-color: white;
     border: var(--border-width) solid var(--color-border);
     transform-origin: top;

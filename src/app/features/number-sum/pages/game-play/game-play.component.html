@@ -1,0 +1,28 @@
+@if(!finish()) {
+<div class="display-area">
+  @if (currentStep(); as step) { @for (item of [step]; track item.value) {
+  <span class="display-number" [class.is-countdown]="item.isPrep">
+    {{ item.value }}
+  </span>
+  } }
+</div>
+} @else {
+<div class="answer-container">
+  <app-input-text
+    #inputRef
+    size="xl"
+    type="number"
+    [formControl]="answer"
+    placeholder="0"
+    (keydown.enter)="answer.valid && checkResult()"
+  />
+
+  <app-button
+    text="Check!"
+    fullWidth
+    size="lg"
+    (click)="checkResult()"
+    [disabled]="!answer.valid"
+  />
+</div>
+}

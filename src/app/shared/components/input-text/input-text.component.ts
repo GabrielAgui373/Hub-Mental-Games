@@ -1,4 +1,13 @@
-import { Component, forwardRef, input, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  booleanAttribute,
+  Component,
+  ElementRef,
+  forwardRef,
+  input,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type InputType = 'text' | 'number';
@@ -17,17 +26,30 @@ export type InputSize = 'sm' | 'md' | 'lg' | 'xl';
     },
   ],
 })
-export class InputTextComponent { 
+export class InputTextComponent implements AfterViewInit{
   label = input('');
   placeholder = input('');
   type = input<InputType>('text');
   size = input<InputSize>('md');
+  autofocus = input(false, { transform: booleanAttribute });
 
   value = signal<string>('');
   isDisabled = signal<boolean>(false);
 
+  inputRef = viewChild<ElementRef<HTMLInputElement>>('inputRef');
+
   onChange: (value: string) => void = () => {};
   onTouched: () => void = () => {};
+
+  ngAfterViewInit(): void {
+    if (this.autofocus()) {
+     
+      setTimeout(() => {
+        this.inputRef()?.nativeElement.focus();
+      }, 0);
+    }
+  }
+  
 
   private sanitizeValue(rawValue: string): string {
     if (rawValue === null || rawValue === undefined) {

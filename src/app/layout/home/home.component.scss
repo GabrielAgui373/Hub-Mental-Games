@@ -1,0 +1,27 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.home-header {
+  margin-bottom: 3rem;
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+  }
+  p {
+    color: #666;
+    font-size: 1.2rem;
+  }
+}
+
+.games-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}

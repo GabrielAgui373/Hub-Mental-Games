@@ -1,4 +1,4 @@
-@use '../../../../styles/abstracts/mixins' as m;
+@use "../../../../styles/abstracts/mixins" as m;
 
 .button {
   @include m.neo-box;
@@ -16,6 +16,11 @@
 
   &--outline {
     background-color: transparent;
+
+    &:hover {
+      background-color: var(--theme-primary);
+      transition: background .2s;
+    }
   }
 
   &.full-width-host {
@@ -30,7 +35,7 @@
     transform: translate(2px, 2px);
     box-shadow: none;
   }
-  
+
   &--sm {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
@@ -44,8 +49,6 @@
   &--lg {
     padding: 1rem 2.5rem;
     font-size: 1.25rem;
-    border-width: 3.5px; 
+    border-width: 3.5px;
   }
-
-
 }
