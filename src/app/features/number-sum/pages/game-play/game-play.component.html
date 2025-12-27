@@ -1,7 +1,12 @@
 @if(!finish()) {
 <div class="display-area">
   @if (currentStep(); as step) { @for (item of [step]; track item.value) {
-  <span class="display-number" [class.is-countdown]="item.isPrep">
+  <span
+    class="display-number"
+    class="display-number animate-in"
+    [style.animation-duration.ms]="item.isPrep ? 500 : config.interval * 0.2"
+    [class.is-countdown]="item.isPrep"
+  >
     {{ item.value }}
   </span>
   } }
