@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 interface GameDisplayStep {
   value: string | number;
   isPrep: boolean;
+  id: string,
 }
 
 @Component({
@@ -40,7 +41,8 @@ export class GamePlayComponent {
     take(3),
     map((i) => ({ 
       value: (3 - i).toString(), 
-      isPrep: true 
+      isPrep: true,
+      id: `prep-${i}` 
     }))
   );
 
@@ -48,7 +50,8 @@ export class GamePlayComponent {
     take(this.config.amount),
     map((index) => ({ 
       value: this.gameSequence[index], 
-      isPrep: false 
+      isPrep: false,
+      id: `game-${index}`
     }))
   );
 
