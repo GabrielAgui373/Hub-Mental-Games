@@ -1,0 +1,67 @@
+@use "../../../../styles/abstracts/mixins" as m;
+
+:host {
+  display: inline-block;
+  outline: none;
+  border-radius: 4px; 
+  transition: outline-offset 0.1s ease;
+
+ 
+  &:focus-visible {
+    outline: 2.5px dashed #000000; 
+    outline-offset: 6px;
+  }
+}
+
+.checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+
+  &:hover:not(.is-disabled) {
+    .checkbox-element {
+      @include m.neo-box-hover;
+    }
+  }
+
+  &:active:not(.is-disabled) {
+    .checkbox-element {
+      @include m.neo-box-active;
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .checkbox-element {
+    @include m.neo-box-base;
+
+    transition: 0.2s ease;
+    height: 27px;
+    width: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &.checked {
+      background-color: var(--theme-primary);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--theme-text);
+      stroke: var(--theme-text);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+}
