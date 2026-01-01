@@ -1,0 +1,40 @@
+@use '../../../../styles/abstracts/mixins' as m;
+
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    &.is-disabled {
+
+    }
+
+    .checkbox-element {
+        @include m.neo-box;
+        transition: .2s ease;
+        height: 28px;
+        width: 28px;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.checked {
+            background-color: var(--theme-primary);
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--theme-text);
+            stroke: var(--theme-text);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    }
+}
