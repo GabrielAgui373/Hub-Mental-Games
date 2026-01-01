@@ -1,4 +1,4 @@
-<div class="checkbox-container" tabindex="0" (keydown)="onKeyDown($event)" (blur)="onBlur()" [class.is-disabled]="disabled()">
+<div class="checkbox-wrapper" [class.is-disabled]="disabled()">
   @if(label() && labelPosition() === 'before') {
     <span class="checkbox-label">{{ label() }}</span>
   }
@@ -6,8 +6,7 @@
   <div
     class="checkbox-element"
     [class.checked]="checked()"
-    [attr.aria-checked]="indeterminate() ? 'mixed' : checked()"
-    (click)="toggle()"
+    [class.indeterminate]="indeterminate()"
   >
     @if(checked() && !indeterminate()) {
       <svg class="checkbox-checkmark" viewBox="0 0 24 24">

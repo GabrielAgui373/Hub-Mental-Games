@@ -1,22 +1,33 @@
 @use 'themes';
 @use 'sass:map';
 
-@mixin neo-box {
+@mixin neo-box-base {
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-default);
   background-color: transparent;
   transition: all var(--transition-fast);
+}
+
+@mixin neo-box-hover {
+  transform: translate(-1px, -1px);
+  box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px 0px var(--color-text);
+}
+
+@mixin neo-box-active {
+  transform: translate(calc(var(--shadow-offset) - 2px), calc(var(--shadow-offset) - 2px));
+  box-shadow: none;
+}
+
+@mixin neo-box {
+  @include neo-box-base;
 
   &:hover:not(:disabled):not(.is-disabled) {
-    transform: translate(-1px, -1px);
-    box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px 0px var(--color-text);
+    @include neo-box-hover;
   }
-  
+
   &:active:not(:disabled):not(.is-disabled) {
-    transform: translate(var(--shadow-offset - 2), var(--shadow-offset - 2));
-    box-shadow: calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0px 0px var(--color-text);
-    box-shadow: none; 
+    @include neo-box-active;
   }
 }
 
