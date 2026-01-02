@@ -1,0 +1,7 @@
+@if (value(); as count) {
+  @if (count > 0) {
+    @for (item of [count]; track item) {
+      <span class="count">{{ item }}</span>
+    }
+  }
+}

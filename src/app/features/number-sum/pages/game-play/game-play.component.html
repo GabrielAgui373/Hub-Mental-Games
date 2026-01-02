@@ -1,24 +1,25 @@
-@if(!finish()) {
-<div class="display-area">
+@switch (status()) { @case ('countdown') {
+  <app-countdown [startDue]="500" (finished)="onCountdownFinished()" />
+} @case ('running') {
+<div class="center-content">
   @if (currentStep(); as step) { @for (item of [step]; track item.id) {
   <span
-    class="display-number animate-in"
-    [class.is-countdown]="item.isPrep"
-    [style.animation-duration.ms]="item.isPrep ? 500 : config.interval * 0.2"
+    class="display-number"
+    [style.animation-duration.ms]="config.interval * 0.2"
   >
     {{ item.value }}
   </span>
   } }
 </div>
-} @else {
-<div class="answer-container">
+} @case ('finished') {
+<div class="answer-container animate-slide-up">
   <app-input-text
     [autofocus]="true"
     size="xl"
     type="number"
-    [formControl]="answer"
+    [formControl]="answerControl"
     placeholder="0"
-    (keydown.enter)="answer.valid && checkResult()"
+    (keydown.enter)="answerControl.valid && checkResult()"
   />
 
   <app-button
@@ -26,7 +27,7 @@
     fullWidth
     size="lg"
     (click)="checkResult()"
-    [disabled]="!answer.valid"
+    [disabled]="answerControl.invalid"
   />
 </div>
-}
+} }
