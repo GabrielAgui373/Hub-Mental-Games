@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { NumberSumStore } from '../../store/number-sum.store';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonComponent } from "../../../../shared/components/button/button.component";
+import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { GameService } from '../../../../core/services/game/game.service';
+import { NumberSumConfig, NumberSumResult } from '../../types/number-sum.types';
 
 @Component({
   selector: 'app-game-summary',
@@ -10,24 +11,24 @@ import { ButtonComponent } from "../../../../shared/components/button/button.com
   styleUrl: './game-summary.component.scss',
 })
 export class GameSummaryComponent {
-  private store = inject(NumberSumStore);
+  private game = inject(GameService<NumberSumConfig, NumberSumResult>);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  result = this.store.result;
+  result = this.game.result;
 
   playAgain() {
-    this.store.restartGame();
+    this.game.restartGame();
     this.router.navigate(['../play'], { relativeTo: this.route });
   }
 
   goToSetup() {
-    this.store.restartGame(); 
+    this.game.restartGame();
     this.router.navigate(['../setup'], { relativeTo: this.route });
   }
 
   goToHome() {
-    this.store.resetAll();
-    this.router.navigate(['/']); 
+    this.game.resetAll();
+    this.router.navigate(['/']);
   }
 }

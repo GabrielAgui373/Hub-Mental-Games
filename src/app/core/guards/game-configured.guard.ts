@@ -1,16 +1,12 @@
 import { inject } from "@angular/core";
-import { CanActivateFn, Router } from "@angular/router";
-import { NumberSumStore } from "../../features/number-sum/store/number-sum.store";
+import { ActivatedRouteSnapshot, CanActivateFn, Router } from "@angular/router";
+import { GameService } from "../services/game/game.service";
 
-export const gameConfiguredGuard: CanActivateFn = () => {
+export const gameConfiguredGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
   const router = inject(Router);
-  const store = inject(NumberSumStore);
-
+  const game = inject(GameService);
   
-  if (store.hasConfig()) {
-    return true; 
-  }
+  const fallback = route.data['setupPath'] || '/';
 
- 
-  return router.createUrlTree(['/games/number-sum/setup']);
+  return game.hasConfig() ? true : router.createUrlTree([fallback]);
 };

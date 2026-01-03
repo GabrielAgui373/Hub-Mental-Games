@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { THEMES } from './core/services/theme.service';
+import { THEMES } from './core/services/theme/theme.service';
 
 export const routes: Routes = [
   {

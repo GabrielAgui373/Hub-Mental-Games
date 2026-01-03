@@ -1,12 +1,9 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { NumberSumConfig, NumberSumResult } from './number-sum.types';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class NumberSumStore {
-  private _config = signal<NumberSumConfig | null>(null);
-  private _result = signal<NumberSumResult | null>(null);
+@Injectable()
+export class GameService<C, R> {
+  private _config = signal<C | null>(null);
+  private _result = signal<R | null>(null);
 
   readonly config = this._config.asReadonly();
   readonly result = this._result.asReadonly();
@@ -14,12 +11,12 @@ export class NumberSumStore {
   readonly hasConfig = computed(() => !!this._config());
   readonly hasResult = computed(() => !!this._result());
 
-  setGameConfig(config: NumberSumConfig) {
+  setGameConfig(config: C) {
     this._config.set(config);
-    this._result.set(null); 
+    this._result.set(null);
   }
 
-  setGameResult(result: NumberSumResult) {
+  setGameResult(result: R) {
     this._result.set(result);
   }
 
