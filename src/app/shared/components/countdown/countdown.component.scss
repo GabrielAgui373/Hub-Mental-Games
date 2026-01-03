@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  height: 100%;
+}
+
+.count {
+  font-size: 8rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--theme-bg);
+  padding: 1rem;
+  opacity: 0.6;
+  will-change: opacity, transform;
+  
+  -webkit-text-stroke: 4px var(--color-text);
+  paint-order: stroke fill;
+
+  animation-name: countdown-pulse;
+  animation-duration: 0.5s; 
+  animation-fill-mode: forwards; 
+}
+
+@keyframes countdown-pulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}

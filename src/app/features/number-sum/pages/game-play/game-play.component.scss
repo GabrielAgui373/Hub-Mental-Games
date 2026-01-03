@@ -18,6 +18,8 @@
 }
 
 .display-number {
+  display: block;
+  
   font-size: 7rem;
   font-weight: 900;
   line-height: 1.2;
@@ -26,20 +28,9 @@
 
   will-change: opacity, transform;
 
-  &.animate-in {
-    animation-name: simple-fade;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-  }
-
-  &.is-countdown {
-    font-size: 8rem;
-    color: var(--theme-bg);
-    animation-name: countdown-pulse;
-    -webkit-text-stroke: 4px var(--color-text);
-    paint-order: stroke fill;
-    opacity: 0.6;
-  }
+  animation-name: simple-fade;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 .answer-container {
