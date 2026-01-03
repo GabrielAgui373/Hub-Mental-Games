@@ -11,6 +11,19 @@ $yellow: (
   100: #181401,
 );
 
+$blue: (
+  10: #eaf8fa,
+  20: #c1e9f1,
+  30: #97dbe7,
+  40: #6eccde,
+  50: #45bed4,
+  60: #2ba4ba,
+  70: #218091,
+  80: #185b68,
+  90: #0e373e,
+  100: #051215,
+);
+
 $gray: (
   10: #f9f9f9,
   20: #f0f0f0,
@@ -51,9 +64,9 @@ $white-alpha: (
 );
 
 $z-layers: (
-  'base': 0,
-  'dropdown': 100,
-  'modal': 200,
-  'toast': 300,
-  'tooltip': 400
+  "base": 0,
+  "dropdown": 100,
+  "modal": 200,
+  "toast": 300,
+  "tooltip": 400,
 );

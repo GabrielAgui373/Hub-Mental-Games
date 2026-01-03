@@ -17,6 +17,16 @@ export const routes: Routes = [
       ),
   },
   {
+    data: {
+      theme: THEMES.MATH_TRICKS
+    },
+    path: 'games/math-tricks',
+    loadChildren: () =>
+      import('./features/number-sum/number-sum.routes').then(
+        (m) => m.NUMBER_SUM_ROUTES
+      ),
+  },
+  {
     path: '**',
     redirectTo: '', //adicionar página não encontrada
   },

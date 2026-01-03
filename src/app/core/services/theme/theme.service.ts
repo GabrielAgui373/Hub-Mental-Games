@@ -4,7 +4,8 @@ import { distinctUntilChanged, filter, map } from 'rxjs';
 
 export enum THEMES {
   HUB = 'hub',
-  NUMBER_SUM = 'number-sum'
+  NUMBER_SUM = 'number-sum',
+  MATH_TRICKS = 'math-tricks',
 }
 
 export type ThemeType = typeof THEMES[keyof typeof THEMES];

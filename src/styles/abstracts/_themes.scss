@@ -13,5 +13,11 @@ $themes: (
     'surface': #ffffff,
     'text': map.get(v.$black-alpha, 100),
     'bg': map.get(v.$yellow, 10)
+  ),
+  'math-tricks': (
+    'primary': map.get(v.$blue, 50),
+    'surface': #ffffff,
+    'text': map.get(v.$black-alpha, 100),
+    'bg': map.get(v.$blue, 10)
   )
 );
