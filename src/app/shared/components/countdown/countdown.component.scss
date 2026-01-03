@@ -18,7 +18,7 @@
   paint-order: stroke fill;
 
   animation-name: countdown-pulse;
-  animation-duration: 1s; 
+  animation-duration: 0.5s; 
   animation-fill-mode: forwards; 
 }
 
@@ -31,11 +31,8 @@
     opacity: 1;
     transform: scale(0.9);
   }
-  80% {
-     opacity: 1; 
-  }
   100% {
-    opacity: 0; 
+    opacity: 0;
     transform: scale(1.1);
   }
 }

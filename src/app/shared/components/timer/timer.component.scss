@@ -1,0 +1,72 @@
+.timer-container {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid black;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 18px;
+  width: 100%;
+}
+
+.timer-internal {
+  height: 110%;
+  width: 110%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 17px;
+  animation-name: move-bar;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.25) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+    background-size: 28.28px 28.28px;
+    animation: move-stripes 1s linear infinite;
+  }
+}
+
+@keyframes move-bar {
+  0% {
+    clip-path: inset(0 0 0 0);
+    background-color: var(--theme-primary);
+  }
+  48% {
+    background-color: var(--theme-primary);
+  }
+  50% {
+    background-color: #f1c40f;
+  }
+  78% {
+    background-color: #f1c40f;
+  }
+  80% {
+    background-color: #e74c3c;
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+    background-color: #e74c3c;
+  }
+}
+
+@keyframes move-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 28.28px 0;
+  }
+}

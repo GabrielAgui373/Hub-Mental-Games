@@ -1,0 +1,8 @@
+<div class="timer-container">
+  @if (duration() > 0) {
+    <div class="timer-internal" 
+         [style.animation-duration.ms]="duration()"
+         (animationend)="onAnimationEnd()">
+    </div>
+  }
+</div>
