@@ -1,6 +1,7 @@
-import { Component, DOCUMENT, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { fromEvent, map, startWith } from 'rxjs';
+import { SoundService } from '../../core/services/sound/sound.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,9 @@ import { fromEvent, map, startWith } from 'rxjs';
 })
 export class HeaderComponent {
   private document = inject(DOCUMENT);
+  private soundService = inject(SoundService);
+
+  isMuted = this.soundService.isMuted;
 
   isFullscreen = toSignal(
     fromEvent(this.document, 'fullscreenchange').pipe(
@@ -27,5 +31,9 @@ export class HeaderComponent {
         this.document.exitFullscreen();
       }
     }
+  }
+
+  toggleMute() {
+    this.soundService.toggleMute();
   }
 }

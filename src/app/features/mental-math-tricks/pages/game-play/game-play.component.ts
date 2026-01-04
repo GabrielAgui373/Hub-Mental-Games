@@ -11,6 +11,7 @@ import { CountdownComponent } from '../../../../shared/components/countdown/coun
 import { TimerComponent } from '../../../../shared/components/timer/timer.component';
 import { InputTextComponent } from '../../../../shared/components/input-text/input-text.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { SoundService } from '../../../../core/services/sound/sound.service';
 
 type GameStatus = 'countdown' | 'running' | 'finished';
 
@@ -31,6 +32,7 @@ export class GamePlayComponent {
   private game = inject(GameService<MathTricksConfig, MathTricksResult>);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private soundService = inject(SoundService);
 
   config = this.game.config() ?? { timeLimit: 60, enabledTricks: ['multiply11'] };
 
@@ -93,10 +95,12 @@ export class GamePlayComponent {
     this.history.update((h) => [...h, { question: this.currentQuestion().text, userAnswer, correctAnswer, isCorrect }]);
 
     if (isCorrect) {
+      this.soundService.play('correct');
       this.triggerSuccess();
       this.correctAnswers.update((v) => v + 1);
       this.generateNewQuestion();
     } else {
+      this.soundService.play('wrong');
       this.wrongAnswers.update((v) => v + 1);
       this.triggerError();
     }
