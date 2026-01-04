@@ -3,15 +3,24 @@
 
 $themes: (
   'hub': (
-    'primary': #6c5ce7,    
+    'primary': #9364b5,    
     'surface': #ffffff,
-    'text': map.get(v.$black-alpha, 100),
-    'bg': #ffffff
+    'text-color': map.get(v.$black-alpha, 100),
+    'bg': #f3eef7,
+    
   ),
   'number-sum': (
     'primary': map.get(v.$yellow, 50),
     'surface': #ffffff,
-    'text': map.get(v.$black-alpha, 100),
-    'bg': map.get(v.$yellow, 10)
+    'text-color': map.get(v.$black-alpha, 100),
+    'bg': map.get(v.$yellow, 10),
+    'title-color': map.get(v.$yellow, 80)
+  ),
+  'math-tricks': (
+    'primary': map.get(v.$blue, 50),
+    'surface': #ffffff,
+    'text-color': map.get(v.$black-alpha, 100),
+    'bg': map.get(v.$blue, 10),
+    'title-color': map.get(v.$blue, 80)
   )
 );

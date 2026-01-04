@@ -5,12 +5,14 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
   padding: 1rem 1.5rem;
   background-color: transparent;
   position: fixed;
 
   z-index: 10;
   width: 100%;
+  box-sizing: border-box;
 
   .icon-btn {
     @include m.neo-box;
@@ -25,7 +27,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: var(--theme-primary)
+        background-color: var(--theme-primary);
     }
 
     svg {

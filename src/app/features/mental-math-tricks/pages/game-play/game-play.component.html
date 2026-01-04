@@ -1,0 +1,64 @@
+@switch (status()) {
+  @case ('countdown') {
+    <app-countdown [startDue]="500" (finished)="onCountdownFinished()" />
+  } 
+  
+  @case ('running') {
+    <div class="play-container">
+      
+      <div class="game-wrapper">
+        <div class="timer-section">
+          <app-timer [duration]="config.timeLimit" (finished)="finishGame()" />
+        </div>
+
+        <div class="game-card" 
+             [class.success-glow]="showSuccess()" 
+             [class.error-glow]="isWrong()">
+          
+          <header class="card-header">
+            <div class="score-group">
+              <div class="stat-badge success">
+                <span class="label">HITS</span>
+                <span class="value">{{ correctAnswers() }}</span>
+              </div>
+              <div class="stat-badge error">
+                <span class="label">MISSES</span>
+                <span class="value">{{ wrongAnswers() }}</span>
+              </div>
+            </div>
+          </header>
+
+          <main class="card-content">
+            <div class="question-display-container">
+              @for (item of [currentQuestion()]; track item.id) {
+                <div class="question-text animate-pop">
+                  {{ item.text }}
+                </div>
+              }
+            </div>
+
+            <div class="interaction-area" [class.shake]="isWrong()">
+              <app-input-text
+                [autofocus]="true"
+                size="xl"
+                type="number"
+                [formControl]="answerControl"
+                placeholder="?"
+                (keydown.enter)="answerControl.valid && checkAnswer()"
+              />
+
+              <app-button
+                [text]="isWrong() ? 'TRY AGAIN!' : 'CHECK ANSWER'"
+                fullWidth
+                size="lg"
+                (click)="checkAnswer()"
+                [disabled]="answerControl.invalid"
+              />
+            </div>
+          </main>
+        </div>
+      </div>
+      
+    </div>
+  }
+}

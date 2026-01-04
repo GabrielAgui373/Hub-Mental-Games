@@ -4,7 +4,8 @@ import { distinctUntilChanged, filter, map } from 'rxjs';
 
 export enum THEMES {
   HUB = 'hub',
-  NUMBER_SUM = 'number-sum'
+  NUMBER_SUM = 'number-sum',
+  MATH_TRICKS = 'math-tricks',
 }
 
 export type ThemeType = typeof THEMES[keyof typeof THEMES];
@@ -39,10 +40,9 @@ export class ThemeService {
           current = current.firstChild
         }
         
-        //fallback para o theme da raíz - permite setar um theme sempre a partir da rota de cada game
         return THEMES.HUB;
       }),
-      //se o resultado de map for igual ao anterior não executa o subscribe
+     
       distinctUntilChanged(),
     ).subscribe((foundTheme) => {
       console.log('Mudança de tema detectada:', foundTheme);

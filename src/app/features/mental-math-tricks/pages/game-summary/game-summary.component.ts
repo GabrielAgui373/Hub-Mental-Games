@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { GameService } from '../../../../core/services/game/game.service';
-import { NumberSumConfig, NumberSumResult } from '../../types/number-sum.types';
+import { MathTricksConfig, MathTricksResult } from '../../types/math-tricks.types';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ButtonComponent } from "../../../../shared/components/button/button.component";
 
 @Component({
   selector: 'app-game-summary',
@@ -11,11 +11,12 @@ import { NumberSumConfig, NumberSumResult } from '../../types/number-sum.types';
   styleUrl: './game-summary.component.scss',
 })
 export class GameSummaryComponent {
-  private game = inject(GameService<NumberSumConfig, NumberSumResult>);
+  private game = inject(GameService<MathTricksConfig, MathTricksResult>);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   result = this.game.result;
+  bestResult = this.game.bestResult;
 
   playAgain() {
     this.game.restartGame();
@@ -23,7 +24,7 @@ export class GameSummaryComponent {
   }
 
   goToSetup() {
-    this.game.restartGame();
+    this.game.resetAll();
     this.router.navigate(['../setup'], { relativeTo: this.route });
   }
 

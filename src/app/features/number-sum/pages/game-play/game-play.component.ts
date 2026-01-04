@@ -1,13 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-import { NumberSumStore } from '../../store/number-sum.store';
 import { filter, finalize, map, switchMap, take, timer } from 'rxjs';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextComponent } from '../../../../shared/components/input-text/input-text.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { NumberSumResult } from '../../store/number-sum.types';
+import { NumberSumConfig, NumberSumResult } from '../../types/number-sum.types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CountdownComponent } from '../../../../shared/components/countdown/countdown.component';
+import { GameService } from '../../../../core/services/game/game.service';
 
 interface GameStep {
   value: number;
@@ -27,14 +27,14 @@ type GameStatus = 'countdown' | 'running' | 'finished';
   styleUrl: './game-play.component.scss',
 })
 export class GamePlayComponent {
-  private store = inject(NumberSumStore);
+  private game = inject(GameService<NumberSumConfig, NumberSumResult>);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   config = {
-    amount: this.store.config()?.amount ?? 10,
-    digits: this.store.config()?.digits ?? 1,
-    interval: this.store.config()?.interval ?? 1000,
+    amount: this.game.config()?.amount ?? 10,
+    digits: this.game.config()?.digits ?? 1,
+    interval: this.game.config()?.interval ?? 1000,
   };
 
   gameSequence = this.generateGameSequence(
@@ -89,7 +89,7 @@ export class GamePlayComponent {
       numbersShown: this.gameSequence,
     };
 
-    this.store.setGameResult(resultData);
+    this.game.setGameResult(resultData);
     this.router.navigate(['../summary'], { relativeTo: this.route });
   }
 

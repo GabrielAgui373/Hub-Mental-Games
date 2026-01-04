@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GameItem } from '../../core/models/game-item.model';
 import { GameCardComponent } from "../../shared/components/game-card/game-card.component";
+import { THEMES } from '../../core/services/theme/theme.service';
 
 @Component({
   selector: 'app-main',
@@ -13,9 +14,18 @@ export class HomeComponent {
     {
       id: 'num-sum',
       title: 'Number Sum',
-      description: 'Some os números rapidamente antes que o tempo acabe.',
-      details: 'Vários números aparecerão na tela em intervalos configurados. Você deve memorizar e somar todos mentalmente. No final, digite o resultado total.',
-      route: 'games/number-sum/setup'
+      description: 'Sum numbers quickly as they appear on the screen.',
+      details: 'A sequence of numbers will be shown at set intervals. Memorize and sum them mentally, then provide the final total.',
+      route: 'games/number-sum/setup',
+      theme: THEMES.NUMBER_SUM,
     },
-  ]
+    {
+      id: 'math-tricks',
+      title: 'Mental Math Tricks',
+      description: 'Master shortcuts and solve equations against the clock.',
+      details: 'Solve as many operations as possible using special techniques like the Rule of 11, Square of 5, and Sum of 10 Units.',
+      route: 'games/math-tricks/setup',
+      theme: THEMES.MATH_TRICKS,
+    }
+  ];
 }
