@@ -1,15 +1,14 @@
-<div class="card" [class.is-expanded]="expanded()">
-  <div class="card__header">
-    <div class="card__title-group">
+<div class="card" [class.is-expanded]="expanded()" [attr.data-theme]="game().theme">
+  <div class="card__header" (click)="toggleDetails()">
+    <div class="card__title-container">
       <h3 class="card__title">{{ game().title }}</h3>
+      <div class="card__badge">NEW</div>
     </div>
-
-    <button
-      class="card__toggle-btn"
-      (click)="toggleDetails()"
-      [attr.aria-label]="expanded() ? 'Collapse details' : 'Expand details'"
-    >
-      <span class="chevron">▼</span>
+    
+    <button class="card__toggle-btn" [attr.aria-label]="expanded() ? 'Collapse' : 'Expand'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="card__icon">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
     </button>
   </div>
 
@@ -18,7 +17,7 @@
   <div class="card__expand-wrapper">
     <div class="card__expand-inner">
       <div class="card__details-content">
-        <p><strong>Como funciona:</strong></p>
+        <span class="card__details-label">Quick Guide</span>
         <p>{{ game().details }}</p>
       </div>
     </div>
@@ -26,7 +25,7 @@
 
   <div class="card__actions">
     <app-button
-      text="JOGAR AGORA"
+      text="PLAY NOW"
       variant="primary"
       [fullWidth]="true"
       (click)="navigateToGame()"

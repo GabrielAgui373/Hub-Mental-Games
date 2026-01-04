@@ -1,0 +1,155 @@
+@use '../../../../../styles/abstracts/mixins' as m;
+
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--theme-bg);
+  --dash-color: rgba(0, 0, 0, 0.15);
+}
+
+.play-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+}
+
+.game-wrapper {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+.game-card {
+  @include m.neo-box-base;
+  background-color: var(--theme-surface);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+ 
+
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  &.success-glow {
+    border-color: var(--color-success, #2ecc71);
+    box-shadow: 0 0 30px rgba(46, 204, 113, 0.3), var(--shadow-default);
+    transform: scale(1.02);
+  }
+  
+  &.error-glow {
+    border-color: var(--color-error, #e74c3c);
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.3), var(--shadow-default);
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+
+  .score-group {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    border: 2px dashed var(--dash-color);
+  }
+
+  .stat-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    border-radius: 15px;
+    min-width: 90px;
+    transition: transform 0.2s ease;
+
+    .label {
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      opacity: 0.6;
+      margin-bottom: -2px;
+    }
+    .value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    &.success { 
+      color: var(--color-success, #2ecc71);
+      border: 2px solid transparent;
+    }
+    &.error { 
+      color: var(--color-error, #e74c3c);
+      border: 2px solid transparent;
+    }
+  }
+}
+
+.question-display-container {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &::before {
+    content: "SOLVE THIS";
+    position: absolute;
+    top: -25px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--theme-title-color);
+    letter-spacing: 0.2em;
+  }
+
+  .question-text {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.04em;
+    line-height: 1;
+
+    @media (max-width: 480px) {
+      font-size: 3.5rem;
+    }
+  }
+}
+
+.interaction-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &.shake {
+    animation: shake-anim 0.4s cubic-bezier(.36,.07,.19,.97) both;
+  }
+}
+
+
+@keyframes shake-anim {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.animate-pop {
+  animation: pop-anim 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pop-anim {
+  0% { transform: scale(0.8) translateY(10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}

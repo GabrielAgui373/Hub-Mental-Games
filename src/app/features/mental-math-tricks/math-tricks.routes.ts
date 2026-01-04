@@ -3,7 +3,7 @@ import { GameService } from '../../core/services/game/game.service';
 import { gameConfiguredGuard } from '../../core/guards/game-configured.guard';
 import { gameFinishedGuard } from '../../core/guards/game-finished.guard';
 
-export const NUMBER_SUM_ROUTES: Routes = [
+export const MATH_TRICKS_ROUTES: Routes = [
   {
     path: '',
     providers: [GameService], 

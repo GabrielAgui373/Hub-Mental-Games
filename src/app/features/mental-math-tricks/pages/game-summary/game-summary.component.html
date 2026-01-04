@@ -1,1 +1,60 @@
-<p>game-summary works!</p>
+<div class="summary-container">
+  @if (result(); as res) {
+    <div class="summary-card animate-slide-up">
+      
+      <div class="info-column">
+        <header class="summary-header">
+          @if (bestResult() === res && res.correctAnswers > 0) {
+            <div class="record-badge">NEW RECORD!</div>
+          }
+          <h1 class="title">Game Over</h1>
+          <p class="subtitle">Blitz Session Results</p>
+        </header>
+
+        <div class="stats-wrapper">
+          <div class="main-stat">
+            <span class="label">ACCURACY</span>
+            <span class="value">{{ res.accuracy }}%</span>
+          </div>
+          
+          <div class="sub-stats-grid">
+            <div class="pill-stat success">
+              <span class="label">HITS</span>
+              <span class="value">{{ res.correctAnswers }}</span>
+            </div>
+            <div class="pill-stat error">
+              <span class="label">MISSES</span>
+              <span class="value">{{ res.wrongAnswers }}</span>
+            </div>
+          </div>
+        </div>
+
+        <footer class="actions">
+          <app-button text="Play Again" fullWidth (click)="playAgain()" />
+          <app-button text="Setup" variant="outline" fullWidth (click)="goToSetup()" />
+          <button class="home-link" (click)="goToHome()">Back to Home</button>
+        </footer>
+      </div>
+
+      <div class="divider"></div>
+
+      <section class="history-column">
+        <h3 class="section-title">Performance History</h3>
+        <div class="history-scroll-area">
+          <div class="history-list">
+            @for (item of res.history.reverse(); track $index) {
+              <div class="history-item" [class.is-correct]="item.isCorrect">
+                <span class="q-text">{{ item.question }}</span>
+                <div class="q-result">
+                  <span class="u-ans">{{ item.userAnswer }}</span>
+                  <span class="icon">{{ item.isCorrect ? '✓' : '✗' }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+
+    </div>
+  }
+</div>

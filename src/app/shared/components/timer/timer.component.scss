@@ -1,9 +1,14 @@
+:host {
+  display: block; 
+  width: 100%;
+}
+
 .timer-container {
   background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2.5px solid black;
+  border: 2.5px solid var(--color-border);
   border-radius: 15px;
   overflow: hidden;
   height: 18px;

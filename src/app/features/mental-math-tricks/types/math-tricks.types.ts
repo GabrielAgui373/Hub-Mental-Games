@@ -14,7 +14,6 @@ export interface MathQuestionHistory {
   userAnswer: number;    
   correctAnswer: number;
   isCorrect: boolean;   
-  trickUsed: MathTrickType; 
 }
 
 export interface MathTricksResult {

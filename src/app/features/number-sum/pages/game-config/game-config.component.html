@@ -1,26 +1,41 @@
 <div class="config-container">
+  <header class="config-header">
+    <h2 class="config-title">Sequence Settings</h2>
+    <p class="config-subtitle">Configure the quantity, speed, and difficulty of the numbers.</p>
+  </header>
+
   <form [formGroup]="formConfig" class="form-config" (ngSubmit)="startGame()">
-    <app-dropdown
-      label="Digits"
-      placeholder="Select number of digits"
-      formControlName="digits"
-      [options]="digitsOptions"
-    />
+    <div class="section">
+      <app-dropdown
+        label="Digits"
+        placeholder="Select number of digits"
+        formControlName="digits"
+        [options]="digitsOptions"
+      />
+    </div>
 
-    <app-dropdown
-      label="Time Interval"
-      [options]="intervals"
-      placeholder="Select speed"
-      formControlName="interval"
-    />
+    <div class="section">
+      <app-dropdown
+        label="Time Interval"
+        [options]="intervals"
+        placeholder="Select speed"
+        formControlName="interval"
+      />
+    </div>
 
-    <app-dropdown
-      label="Quantity"
-      [options]="numberOptions"
-      placeholder="Select quantity"
-      formControlName="amount"
-    />
+    <div class="section">
+      <app-dropdown
+        label="Quantity"
+        [options]="numberOptions"
+        placeholder="Select quantity"
+        formControlName="amount"
+      />
+    </div>
 
-    <app-button text="Start Game!" fullWidth [disabled]="!formConfig.valid" />
+    <app-button 
+      text="START SUMMING!" 
+      fullWidth 
+      [disabled]="!formConfig.valid" 
+    />
   </form>
 </div>

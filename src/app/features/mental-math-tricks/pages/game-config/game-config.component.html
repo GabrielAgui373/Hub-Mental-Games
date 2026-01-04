@@ -1,1 +1,45 @@
-<p>game-config works!</p>
+<div class="config-container">
+  <header class="config-header">
+    <h2 class="config-title">Game Settings</h2>
+    <p class="config-subtitle">Choose your time and the tricks you want to master.</p>
+  </header>
+
+  <form [formGroup]="formConfig" class="form-config" (ngSubmit)="startGame()">
+    <div class="section">
+      <app-dropdown
+        placeholder="Choose duration"
+        formControlName="timeLimit"
+        label="Select Time Limit"    
+        [options]="timeOptions"
+      />
+    </div>
+
+    <div class="section">
+      <label class="section-label">Enable Math Tricks</label>
+      <div class="checkbox-group">
+        <app-checkbox 
+          label="Multiply by 11 (2-3 digits)" 
+          formControlName="multiply11" 
+        />
+        <app-checkbox 
+          label="Same starting digit & end in 5" 
+          formControlName="sameFirstEnd5" 
+        />
+        <app-checkbox 
+          label="Same starting digit & units sum to 10" 
+          formControlName="sumTenUnits" 
+        />
+      </div>
+      
+      @if (formConfig.errors?.['noTrickSelected'] && formConfig.touched) {
+        <span class="error-message">Please select at least one trick to play.</span>
+      }
+    </div>
+
+    <app-button 
+      text="START BLITZ!" 
+      fullWidth 
+      [disabled]="!formConfig.valid" 
+    />
+  </form>
+</div>

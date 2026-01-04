@@ -21,9 +21,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../../../../core/services/game/game.service';
 
 interface GameConfigForm {
-  interval: FormControl<number | null>;
-  amount: FormControl<number | null>;
-  digits: FormControl<number | null>;
+  interval: FormControl<number>;
+  amount: FormControl<number>;
+  digits: FormControl<number>;
 }
 
 @Component({
@@ -33,15 +33,15 @@ interface GameConfigForm {
   styleUrl: './game-config.component.scss',
 })
 export class GameConfigComponent {
-  private fb = inject(FormBuilder);
+  private fb = inject(FormBuilder).nonNullable;
   private game = inject(GameService<NumberSumConfig, NumberSumResult>);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
   formConfig = this.fb.group<GameConfigForm>({
-    interval: this.fb.control(null, Validators.required),
-    amount: this.fb.control(null, Validators.required),
-    digits: this.fb.control(null, Validators.required),
+    interval: this.fb.control(1000, Validators.required),
+    amount: this.fb.control(5, Validators.required),
+    digits: this.fb.control(1, Validators.required),
   });
 
   startGame() {

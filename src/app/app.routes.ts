@@ -22,8 +22,8 @@ export const routes: Routes = [
     },
     path: 'games/math-tricks',
     loadChildren: () =>
-      import('./features/number-sum/number-sum.routes').then(
-        (m) => m.NUMBER_SUM_ROUTES
+      import('./features/mental-math-tricks/math-tricks.routes').then(
+        (m) => m.MATH_TRICKS_ROUTES
       ),
   },
   {
