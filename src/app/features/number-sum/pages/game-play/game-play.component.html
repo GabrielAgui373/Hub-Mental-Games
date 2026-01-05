@@ -1,33 +1,52 @@
-@switch (status()) { @case ('countdown') {
-  <app-countdown [startDue]="500" (finished)="onCountdownFinished()" />
-} @case ('running') {
-<div class="center-content">
-  @if (currentStep(); as step) { @for (item of [step]; track item.id) {
-  <span
-    class="display-number"
-    [style.animation-duration.ms]="config.interval * 0.2"
-  >
-    {{ item.value }}
-  </span>
-  } }
-</div>
-} @case ('finished') {
-<div class="answer-container animate-slide-up">
-  <app-input-text
-    [autofocus]="true"
-    size="xl"
-    type="number"
-    [formControl]="answerControl"
-    placeholder="0"
-    (keydown.enter)="answerControl.valid && checkResult()"
-  />
+@switch (status()) { 
+  @case ('countdown') {
+    <app-countdown [startDue]="500" (finished)="onCountdownFinished()" />
+  } 
+  
+  @case ('running') {
+    <div class="play-container">
+      <div class="center-content">
+        @if (currentStep(); as step) { 
+          @for (item of [step]; track item.id) {
+            <span class="display-number" [style.animation-duration.ms]="config.interval * 0.2">
+              {{ item.value }}
+            </span>
+          } 
+        }
+      </div>
+    </div>
+  } 
+  
+  @case ('finished') {
+    <div class="play-container" [class.with-keyboard]="keyboardService.isKeyboardEnabled()">
+      <div class="game-wrapper">
+        <div class="answer-container animate-slide-up">
+          <app-input-text
+            [autofocus]="true"
+            size="xl"
+            type="text"
+            [formControl]="answerControl"
+            placeholder="0"
+            (keydown.enter)="answerControl.valid && checkResult()"
+          />
 
-  <app-button
-    text="Check!"
-    fullWidth
-    size="lg"
-    (click)="checkResult()"
-    [disabled]="answerControl.invalid"
-  />
-</div>
-} }
+          @if (!keyboardService.isKeyboardEnabled()) {
+            <app-button
+              text="Check!"
+              fullWidth
+              size="lg"
+              (click)="checkResult()"
+              [disabled]="answerControl.invalid"
+            />
+          }
+        </div>
+
+        @if (keyboardService.isKeyboardEnabled()) {
+          <div class="keyboard-container animate-pop">
+            <app-numeric-keyboard (click)="handleKeyboardClick($event)" />
+          </div>
+        }
+      </div>
+    </div>
+  } 
+}

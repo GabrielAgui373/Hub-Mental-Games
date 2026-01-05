@@ -5,8 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--theme-bg);  
   padding: 1rem 1.5rem;
-  background-color: transparent;
   position: fixed;
   z-index: 10;
   width: 100%;

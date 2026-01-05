@@ -15,6 +15,25 @@
   width: 100%;
   height: 100%;
   padding: 1.5rem;
+  transition: all 0.4s ease;
+
+  &.with-keyboard {
+    align-items: flex-start;
+    padding-top: 4rem;
+
+    .game-wrapper {
+      gap: 1rem;
+    }
+
+    .game-card {
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .question-display-container .question-text {
+      font-size: 2.8rem;
+    }
+  }
 }
 
 .game-wrapper {
@@ -22,9 +41,10 @@
   max-width: 400px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
 }
-
 
 .game-card {
   @include m.neo-box-base;
@@ -32,10 +52,10 @@
   padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2.5rem;
   position: relative;
- 
-
+  width: 100%;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   
   &.success-glow {
@@ -53,6 +73,7 @@
 .card-header {
   display: flex;
   justify-content: center;
+  width: 100%;
 
   .score-group {
     display: flex;
@@ -70,30 +91,27 @@
     padding: 0.5rem 1.25rem;
     border-radius: 15px;
     min-width: 90px;
-    transition: transform 0.2s ease;
 
     .label {
       font-size: 0.65rem;
       font-weight: 900;
-      letter-spacing: 0.1em;
       opacity: 0.6;
-      margin-bottom: -2px;
     }
     .value {
       font-size: 1.8rem;
       font-weight: 900;
-      line-height: 1;
     }
 
-    &.success { 
-      color: var(--color-success, #2ecc71);
-      border: 2px solid transparent;
-    }
-    &.error { 
-      color: var(--color-error, #e74c3c);
-      border: 2px solid transparent;
-    }
+    &.success { color: var(--color-success, #2ecc71); }
+    &.error { color: var(--color-error, #e74c3c); }
   }
+}
+
+.card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .question-display-container {
@@ -102,6 +120,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  width: 100%;
 
   &::before {
     content: "SOLVE THIS";
@@ -117,12 +136,7 @@
     font-size: 3.5rem;
     font-weight: 900;
     color: var(--color-text);
-    letter-spacing: -0.04em;
     line-height: 1;
-
-    @media (max-width: 480px) {
-      font-size: 3.5rem;
-    }
   }
 }
 
@@ -130,13 +144,27 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1.5rem;
 
   &.shake {
     animation: shake-anim 0.4s cubic-bezier(.36,.07,.19,.97) both;
-  }
+  } 
 }
 
+.keyboard-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    app-numeric-keyboard {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+}
 
 @keyframes shake-anim {
   10%, 90% { transform: translate3d(-1px, 0, 0); }

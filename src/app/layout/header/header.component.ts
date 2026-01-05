@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter, fromEvent, map, startWith } from 'rxjs';
 import { SoundService } from '../../core/services/sound/sound.service';
+import { KeyboardService } from '../../core/services/keyboard/keyboard.service';
 
 @Component({
   selector: 'app-header',
@@ -17,8 +18,10 @@ export class HeaderComponent {
   private soundService = inject(SoundService);
   private router = inject(Router);
   private location = inject(Location);
+  protected keyboardService = inject(KeyboardService);
 
   isMuted = this.soundService.isMuted;
+  isKeyboardEnabled = this.keyboardService.isKeyboardEnabled;
 
   isHome = toSignal(
     this.router.events.pipe(
@@ -49,6 +52,10 @@ export class HeaderComponent {
 
   toggleMute() {
     this.soundService.toggleMute();
+  }
+
+  toggleKeyboard() {
+    this.keyboardService.toggle();
   }
 
   goHome() {

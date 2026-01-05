@@ -4,8 +4,7 @@
   } 
   
   @case ('running') {
-    <div class="play-container">
-      
+    <div class="play-container" [class.with-keyboard]="keyboardService.isKeyboardEnabled()">
       <div class="game-wrapper">
         <div class="timer-section">
           <app-timer [duration]="config.timeLimit" (finished)="finishGame()" />
@@ -41,24 +40,31 @@
               <app-input-text
                 [autofocus]="true"
                 size="xl"
-                type="number"
+                type="text"
                 [formControl]="answerControl"
                 placeholder="?"
                 (keydown.enter)="answerControl.valid && checkAnswer()"
               />
 
-              <app-button
-                [text]="isWrong() ? 'TRY AGAIN!' : 'CHECK ANSWER'"
-                fullWidth
-                size="lg"
-                (click)="checkAnswer()"
-                [disabled]="answerControl.invalid"
-              />
+              @if (!keyboardService.isKeyboardEnabled()) {
+                <app-button
+                  [text]="isWrong() ? 'TRY AGAIN!' : 'CHECK ANSWER'"
+                  fullWidth
+                  size="lg"
+                  (click)="checkAnswer()"
+                  [disabled]="answerControl.invalid"
+                />
+              }
             </div>
           </main>
         </div>
+
+        @if (keyboardService.isKeyboardEnabled()) {
+          <div class="keyboard-container animate-pop">
+            <app-numeric-keyboard (click)="handleKeyboardClick($event)" />
+          </div>
+        }
       </div>
-      
     </div>
   }
 }
