@@ -9,13 +9,14 @@ import {
   viewChild,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { KeyboardControlDirective } from '../../../core/directives/keyboard/keyboard.directive';
 
 export type InputType = 'text' | 'number';
 export type InputSize = 'sm' | 'md' | 'lg' | 'xl';
 
 @Component({
   selector: 'app-input-text',
-  imports: [],
+  imports: [KeyboardControlDirective],
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss',
   providers: [

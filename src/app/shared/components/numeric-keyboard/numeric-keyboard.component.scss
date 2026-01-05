@@ -1,0 +1,124 @@
+@use "sass:map";
+@use "../../../../styles/abstracts/mixins" as m;
+
+:host {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.keyboard-grid {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 190px;
+
+  .icon-btn {
+    @include m.neo-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--theme-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0;
+
+    transition: all 0.2s ease;
+
+    .number-text {
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    svg {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      stroke-width: 2.5px;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: var(--theme-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.94);
+    }
+  }
+
+  .key-0 {
+    grid-column: 2;
+    grid-row: 4;
+  }
+
+  .key-backspace {
+    grid-column: 1;
+    grid-row: 4;
+    background-color: transparent;
+
+
+    &:hover:not(:disabled) {
+      background-color: #fee2e2;
+      color: #ef4444;
+    }
+  }
+
+  .key-enter {
+    grid-column: 3;
+    grid-row: 4;
+    background-color: var(--theme-primary);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      filter: brightness(1.1);
+    }
+  }
+}
+
+@media (max-height: 650px) {
+  .keyboard-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 320px;
+    gap: 0.5rem;
+
+    .icon-btn { 
+      aspect-ratio: 1.2 / 1; 
+      grid-column: auto !important;
+      grid-row: auto !important;
+
+      .number-text {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+@media (max-height: 450px) {
+  .keyboard-grid {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 520px;
+    gap: 0.4rem;
+
+    .icon-btn { 
+      aspect-ratio: 1.4 / 1;
+      grid-column: auto !important;
+      grid-row: auto !important;
+
+      .number-text {
+        font-size: 1.3rem;
+      }
+
+      svg {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+    }
+  }
+}

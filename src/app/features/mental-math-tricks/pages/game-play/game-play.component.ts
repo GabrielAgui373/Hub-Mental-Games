@@ -1,17 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { 
-  MathQuestionHistory, 
-  MathTricksConfig, 
-  MathTricksResult 
-} from '../../types/math-tricks.types';
+import { MathQuestionHistory, MathTricksConfig, MathTricksResult } from '../../types/math-tricks.types';
 import { GameService } from '../../../../core/services/game/game.service';
 import { CountdownComponent } from '../../../../shared/components/countdown/countdown.component';
 import { TimerComponent } from '../../../../shared/components/timer/timer.component';
 import { InputTextComponent } from '../../../../shared/components/input-text/input-text.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { NumericKeyboardComponent } from '../../../../shared/components/numeric-keyboard/numeric-keyboard.component';
 import { SoundService } from '../../../../core/services/sound/sound.service';
+import { KeyboardControlDirective } from '../../../../core/directives/keyboard/keyboard.directive';
+import { KeyboardService } from '../../../../core/services/keyboard/keyboard.service';
 
 type GameStatus = 'countdown' | 'running' | 'finished';
 
@@ -23,7 +22,9 @@ type GameStatus = 'countdown' | 'running' | 'finished';
     TimerComponent,
     InputTextComponent,
     ReactiveFormsModule,
+  
     ButtonComponent,
+    NumericKeyboardComponent
   ],
   templateUrl: './game-play.component.html',
   styleUrl: './game-play.component.scss',
@@ -33,6 +34,7 @@ export class GamePlayComponent {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private soundService = inject(SoundService);
+  protected keyboardService = inject(KeyboardService);
 
   config = this.game.config() ?? { timeLimit: 60, enabledTricks: ['multiply11'] };
 
@@ -47,7 +49,7 @@ export class GamePlayComponent {
     text: '', answer: 0, id: 0,
   });
   
-  answerControl = new FormControl<number | null>(null, [Validators.required]);
+  answerControl = new FormControl<string>('', [Validators.required]);
 
   onCountdownFinished() {
     this.status.set('running');
@@ -82,7 +84,18 @@ export class GamePlayComponent {
     }
 
     this.currentQuestion.set({ text, answer, id: Date.now() });
-    this.answerControl.reset();
+    this.answerControl.reset('');
+  }
+
+  handleKeyboardClick(value: number | 'backspace' | 'enter') {
+    const current = this.answerControl.value || '';
+    if (typeof value === 'number') {
+      this.answerControl.setValue(current + value);
+    } else if (value === 'backspace') {
+      this.answerControl.setValue(current.slice(0, -1));
+    } else if (value === 'enter') {
+      this.checkAnswer();
+    }
   }
 
   checkAnswer() {
@@ -113,7 +126,7 @@ export class GamePlayComponent {
 
   private triggerError() {
     this.isWrong.set(true);
-    this.answerControl.reset();
+    this.answerControl.reset('');
     setTimeout(() => this.isWrong.set(false), 400);
   }
 
